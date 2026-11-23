@@ -28,8 +28,31 @@ oc apply --context cluster -f instructor/gitops-appproject.yaml
 ----
 . Create one namespace per student.
 +
-Set `WORKSHOP_USER` and `WORKSHOP_NAMESPACE` to the same student id.
-Then run:
+The script applies `instructor/00-student-namespace.yaml` for each id.
+By default it creates `student-01` through `student-20`.
++
+[source,bash]
+----
+chmod +x instructor/prepare-students.sh
+./instructor/prepare-students.sh
+----
++
+Useful options:
++
+[source,bash]
+----
+# Preview the YAML without applying
+./instructor/prepare-students.sh --dry-run
+
+# Different count or id list
+./instructor/prepare-students.sh --count 20
+./instructor/prepare-students.sh --students student-01,student-02,student-03
+
+# Different oc context
+./instructor/prepare-students.sh --context cluster
+----
++
+To create a single namespace by hand:
 +
 [source,bash]
 ----
